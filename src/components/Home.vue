@@ -10,19 +10,24 @@
       </el-header>
       <el-container>
         <!-- 侧边栏 -->
-        <el-aside width="200px">
+        <el-aside :width="isCollapse ? '64px' : '200px'">
+            <div class="toggle-button" @click="toggleCollapse">|||</div>
             <el-menu
               class="el-menu-vertical-demo"
               background-color="#333744"
               text-color="#fff"
               active-text-color="#409EFF"
-              unique-opened>
+              unique-opened
+              :collapse="isCollapse"
+              :collapse-transition="false"
+              router
+              :default-active="activePath">
               <el-submenu  v-for="item in menuList" :key="item.id" :index="item.id+''">
                 <template slot="title">
                   <i :class="iconsObj[item.id]"></i>
                   <span>{{item.authName}} </span>
                 </template>
-                  <el-menu-item v-for="x in item.children" :key="x.id" :index="x.id+''">
+                  <el-menu-item v-for="x in item.children" :key="x.id" :index="'/'+x.path">
                   <i class="el-icon-menu"></i>
                     {{x.authName}}
                     </el-menu-item>
@@ -31,7 +36,9 @@
             </el-menu>
         </el-aside>
         <!-- 主体部分 -->
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
 </template>
@@ -47,11 +54,15 @@ export default {
         '101':'iconfont icon-shangpin',
         '102':'iconfont icon-danju',
         '145':'iconfont icon-baobiao'
-      }
+      },
+      isCollapse:true,
+      // 激活链接地址
+      activePath:''
     }
   },
   created() {
     this.getMenuList();
+    this.activePath = this.$route.path;
   },
   methods: {
     logout() {
@@ -64,6 +75,12 @@ export default {
         this.menuList = res.data
         // console.log(this.menuList)
       }
+    },
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse
+    },
+    saveNavActive(activePath) {
+      window.sessionStorage.setItem('activePath',activePath)
     }
   }
 }
@@ -101,5 +118,14 @@ export default {
 }
 .el-menu {
     border-right: none!important;
+}
+.toggle-button{
+  background-color: #4A5064;
+  font-size: 10px;
+  line-height: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>
