@@ -55,7 +55,7 @@ export default {
         '102':'iconfont icon-danju',
         '145':'iconfont icon-baobiao'
       },
-      isCollapse:true,
+      isCollapse:false,
       // 激活链接地址
       activePath:''
     }
