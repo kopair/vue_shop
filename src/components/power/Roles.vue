@@ -216,14 +216,14 @@ export default {
         return this.$message.error('获取角色失败')
       }
       this.editRolesForm = res.data
-      console.log(this.editRolesForm)
+      // console.log(this.editRolesForm)
     },
     editRolesClosed() {
       this.$refs.editRolesRef.resetFields()
     },
     editRoles() {
       this.$refs.editRolesRef.validate(async valid => {
-        console.log(valid)
+        // console.log(valid)
         if (!valid) return
         const { data: res } = await this.$http.put(
           'roles/' + this.editRolesForm.roleId,
@@ -275,8 +275,8 @@ export default {
       if (removeMess !== 'confirm') {
         return this.$message.info('取消了删除')
       }
-      console.log(roledata)
-      console.log(rightId)
+      // console.log(roledata)
+      // console.log(rightId)
       const { data: res } = await this.$http.delete(
         `roles/${roledata.id}/rights/${rightId}`
       )
@@ -295,7 +295,7 @@ export default {
         return this.$message.error('获取权限失败')
       }
       this.rightsList = res.data;
-      // console.log(role);
+      // s.log(role);
       // 递归寻找三级节点
       this.defKeys=[]
       this.getLeafKeys(role,this.defKeys)
@@ -310,7 +310,7 @@ export default {
       node.children.forEach(item => {
         this.getLeafKeys(item,arr)
       })
-      console.log(arr)
+      // console.log(arr)
     },
     async setRights() {
       const keys = [

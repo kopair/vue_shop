@@ -12,22 +12,31 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 import axios from 'axios'
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 在request拦截器中，展示进度条
 axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token');
-  console.log(config);
+  // console.log(config);
+  NProgress.start();
+  return config
+})
+axios.interceptors.response.use(config => {
+  NProgress.done();
   return config
 })
 Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
 
-Vue.component('tree-table',TreeTable)
+Vue.component('tree-table', TreeTable)
 
-Vue.use(VueQuillEditor,VueQuillEditor)
+Vue.use(VueQuillEditor, VueQuillEditor)
 
-Vue.filter('dateFormat', function(originVal){
+Vue.filter('dateFormat', function (originVal) {
   const dt = new Date(originVal)
   const y = dt.getFullYear()
   const m = (dt.getMonth() + 1 + '').padStart(2, '0')
@@ -41,5 +50,7 @@ Vue.filter('dateFormat', function(originVal){
 new Vue({
   router,
   store,
-  render: function (h) { return h(App) }
+  render: function (h) {
+    return h(App)
+  }
 }).$mount('#app')

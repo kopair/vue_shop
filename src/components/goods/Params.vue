@@ -222,7 +222,7 @@ export default {
         return this.$message.error('获取列表信息失败')
       }
       this.catelist = res.data
-      console.log(this.catelist)
+      // console.log(this.catelist)
     },
     handleChange() {
       this.getParamsDate()
@@ -252,7 +252,7 @@ export default {
         item.inputVisible = false
         item.inputValue = ''
       })
-      console.log(res.data)
+      // console.log(res.data)
       if (this.activeName === 'many') {
         this.manyTableDate = res.data
       } else {

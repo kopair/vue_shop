@@ -256,7 +256,7 @@ export default {
       }
       this.userList = res.data.users
       this.total = res.data.total
-      console.log(res)
+      // console.log(res)
     },
     handleSizeChange(newSize) {
       // console.log(newSize)
@@ -323,7 +323,7 @@ export default {
       })
     },
     async removeUserById(id) {
-      console.log(id)
+      // console.log(id)
       const confirmResult = await this.$confirm(
         '此操作将永久删除该用户, 是否继续?',
         '删除提示',

@@ -154,11 +154,11 @@ export default {
         return this.$message.error('获取商品分类数据失败!')
       }
       this.cateList = res.data
-      console.log(this.cateList)
+      // console.log(this.cateList)
     },
     // 级联选择器变化触发的函数
     handleChange() {
-      console.log(this.addForm.goods_cat)
+      // console.log(this.addForm.goods_cat)
       if (this.addForm.goods_cat.length !== 3) {
         this.addForm.goods_cat = []
       }
@@ -202,7 +202,7 @@ export default {
       // this.$message.success('获动态参数成功')
     },
     handlePreview(file) {
-      console.log(file)
+      // console.log(file)
       this.previewPath = file.response.data.url
       this.previewVisible = true
     },
@@ -213,13 +213,13 @@ export default {
         x.pic === filePath
       })
       this.addForm.pics.splice(i, 1)
-      console.log(this.addForm)
+      // console.log(this.addForm)
     },
     handleSucess(response) {
       // console.log(response)
       const picInfo = { pic: response.data.tmp_path }
       this.addForm.pics.push(picInfo)
-      console.log(this.addForm.pics)
+      // console.log(this.addForm.pics)
     },
     add() {
       this.$refs.addFormRef.validate(async valid => {

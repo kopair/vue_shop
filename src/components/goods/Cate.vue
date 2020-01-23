@@ -200,7 +200,7 @@ export default {
       this.getCateList()
     },
     handleCurrentChange(newPage) {
-      console.log(newPage)
+      // console.log(newPage)
       this.queryInfo.pagenum = newPage
       this.getCateList()
     },
@@ -221,7 +221,7 @@ export default {
     },
     parentCateChanged() {
       // console.log(this.parentCateList)
-      console.log(this.selectedKeys)
+      // console.log(this.selectedKeys)
       if (this.selectedKeys.length > 0) {
         this.addCateForm.cat_pid = this.selectedKeys[
           this.selectedKeys.length - 1
@@ -247,7 +247,7 @@ export default {
         this.getCateList()
         this.$message.success('添加分类成功')
       })
-      console.log(this.addCateForm)
+      // console.log(this.addCateForm)
     },
     addCateDialogClosed() {
       this.$refs.addCateFormRef.resetFields()
@@ -256,7 +256,7 @@ export default {
       this.addCateForm.cat_level = 0
     },
     async editCateDialog(id) {
-      console.log(id)
+      // console.log(id)
       const { data: res } = await this.$http.get('categories/' + id)
       if (res.meta.status !== 200) {
         return this.$message.error('获取分类信息失败')
@@ -289,7 +289,7 @@ export default {
           type: 'warning'
         }
       ).catch(err => err)
-      console.log(deleteMess)
+      // console.log(deleteMess)
       if(deleteMess !== 'confirm'){
         return this.$message.info('取消了删除操作！')
       }
